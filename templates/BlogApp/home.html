@@ -3,7 +3,6 @@
     {% for post in object_list %}
         <div class="post-entry">
             <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
-            {% comment %} <h2><a href="">{{ post.title }}</a></h2> {% endcomment %}
             <p>{{ post.body }}</p>
         </div>
     {% endfor %}

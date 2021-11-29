@@ -1,0 +1,9 @@
+{% extends 'BlogApp\base.html' %}
+{% block content %}
+    <p>Login</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Log In</button>
+    </form>
+{% endblock content %}
