@@ -10,3 +10,9 @@ Blog Post can be editted, deleted, or created using django admin.
 ## Day 0.2:
 
 Allowed CRUD functionality without login in as Django Admin, using Forms.
+
+
+## Day 1
+
+Added Login URL and Welcome {{ user.username }}
+
