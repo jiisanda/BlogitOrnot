@@ -16,3 +16,8 @@ Allowed CRUD functionality without login in as Django Admin, using Forms.
 
 Added Login URL and Welcome {{ user.username }}
 
+
+## Day 2
+
+Updated FrontEnd, User Authentications. 
+
