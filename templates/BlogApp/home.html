@@ -1,10 +1,30 @@
 {% extends 'BlogApp\base.html' %}
 {% block content %}
-    {% for post in object_list %}
-        <div class="post-entry">
-            <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
-            <p>{{ post.body }}</p>
-        </div>
-    {% endfor %}
+    {% if user.is_authenticated %}
+        <p>&nbsp;&nbsp;&nbsp;Hello {{ user.username }}!</p>
+        {% for post in object_list %}
+            <div class="post-box">
+                <div class="post-entry">
+                    <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+                    <div class="container">
+                        <p>{{ post.body }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}    
+    {% else %}
+        <p>Hello Welcome to Blog It Or Not, Where you can write Blogs as well as can write your Diary...
+        <br>
+        Feel Free to Register your self...
+        <br>
+        <a class="navbar-link" href="#">Register</a>
+        <br>
+        And If you already have account do Login
+        <br>
+        <a class="navbar-link" href="{% url 'user_login' %}">Do LogIn</a>
+        </p>
+    {% endif %}
+        
+   
 {% endblock content %}
 

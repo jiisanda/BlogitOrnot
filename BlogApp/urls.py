@@ -1,6 +1,7 @@
 from os import name
 from django.urls import path
 from .views import BlogListView, BlogDetailView, BlogCreateView, BlogUpdateView, BlogDeleteView
+from BlogApp import views
 
 # TEMPLATE URLS
 urlpatterns = [
@@ -9,4 +10,6 @@ urlpatterns = [
     path('post/new/', BlogCreateView.as_view(), name="post_new"),
     path('post/<int:pk>/', BlogDetailView.as_view(), name="post_detail"),
     path('', BlogListView.as_view(), name="home"),
+    path('user_login/', views.user_login, name="user_login"),
+    path('if_not_login/', views.IfNotLoginView, name="if_not_login"),
 ]

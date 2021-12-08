@@ -3,7 +3,7 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
 <html>
     <head>
         <meta charset="utf-8">
@@ -11,21 +11,31 @@
         <title>Blog It or Not!!!</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapies.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+        </style>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <header>
-            <div class="nav-left">
-                <h1><a href="{% url 'home' %}">Blog It Or Not</a></h1>
-            </div>
-            <div class="nav-right">
-                <a href="{% url 'post_new' %}">+ New Blog Post</a>
-            </div> 
-        </header>
+        <nav class="navbar navbar-default navbar-static-top">
+                <div class="nav-left">
+                    <ul class="nav navbar-nav">
+                        <li><a class="navbar-brand" href="{% url 'home' %}">Blog It Or Not</a></li>
+                        {% if user.is_authenticated %}
+                            <li><a class="navbar-link" href="{% url 'logout' %}">Log Out</a></li>
+                            <li><a class="navbar-link" href="{% url 'post_new' %}">+ New Blog Post</a></li>
+                        {% else %}
+                            <li><a class="navbar-link" href="{% url 'user_login' %}">LogIn</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+        </nav>
+
+        
         <div>
             {% block content %}
             {% endblock content %}

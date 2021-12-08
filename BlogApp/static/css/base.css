@@ -1,6 +1,6 @@
 body {
     font-family: 'Source Sans Pro', sans-serif;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 header {
@@ -26,6 +26,7 @@ header h1 a {
 
 .post-entry {
     margin-bottom: 2rem;
+
 }
 
 .post-entry h2 {
@@ -45,5 +46,30 @@ header h1 a {
 
 .post-entry h2 a:hover {
     color: red;
+}
+
+@media (min-width: 768px) {
+    .navbar-brand.abs
+        {
+            position: absolute;
+            width: auto;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+    }
+
+.post-box {
+    border: 1px double black;
+    margin: 25px 850px 75px 100px;
+    background-color: #FBEEC1;
+    padding-left: 10px;
+    align-content: center;
+}
+
+#login-jumbo {
+    background-image: url('../img/jumbotron-bkg-2.jpg');
+    margin-top: 50px;
+    text-align: center;
 }
 
