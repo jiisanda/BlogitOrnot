@@ -12,4 +12,5 @@ urlpatterns = [
     path('', BlogListView.as_view(), name="home"),
     path('user_login/', views.user_login, name="user_login"),
     path('if_not_login/', views.IfNotLoginView, name="if_not_login"),
+    path('register/', views.registrationView, name='register'),
 ]
