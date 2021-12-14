@@ -1,16 +1,22 @@
 {% extends 'BlogApp\base.html' %}
 {% block content %}
+    <br>
     {% if user.is_authenticated %}
-        <p>&nbsp;&nbsp;&nbsp;Hello {{ user.username }}!</p>
+        <p>Hello {{ user.username }}!</p>
         {% for post in object_list %}
-            <div class="post-box">
                 <div class="post-entry">
-                    <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
-                    <div class="container">
+                    <ul>
+                        <li><h3><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h3></li>
+                        <small>
+                            <b>Writer: </b>{{ post.writer.username }}
+                            {% if user.id == post.writer.id %}
+                                <a href="{% url 'post_edit' post.pk %}">[Edit]</a>
+                                <a href="{% url 'post_delete' post.pk %}">[Delete]</a>
+                            {% endif %}
+                        </small>
                         <p>{{ post.body }}</p>
-                    </div>
+                    </ul>
                 </div>
-            </div>
         {% endfor %}    
     {% else %}
         <p>Hello Welcome to Blog It Or Not, Where you can write Blogs as well as can write your Diary...
@@ -22,6 +28,16 @@
         And If you already have account do Login
         <br>
         <a class="navbar-link" href="{% url 'user_login' %}">Do LogIn</a>
+        <br>
+        <p>Here are the Blogs posted on Blog It Or Not...
+            {% for post in object_list %}
+                <div class="post-entry">
+                    <ul>
+                        <li><h3><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h3></li>
+                        <p>{{ post.body }}</p>
+                    </ul>
+                </div>
+        {% endfor %}    
         </p>
     {% endif %}
         

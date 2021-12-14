@@ -1,9 +1,17 @@
 {% extends 'BlogApp\base.html' %}
 {% block content %}
-    <h1>Edit Post</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Update!">
-    </form>
+{% if user.is_authenticated %}
+    {% if user.id == post.writer.id %}
+        <h1>Edit Post</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Update!">
+        </form>
+    {% else %}
+        You are not authorized to visit this page... Try loging in...
+    {% endif %}
+{% else %}
+    You are not authorized to visit this page... Try loging in...
+{% endif %}
 {% endblock content %}

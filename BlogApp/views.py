@@ -7,10 +7,13 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 from BlogApp.forms import UserForm, UserProfileInfoForm
 
 from .models import Post
+
+from django.db.models import Q
 
 # Create your views here.
 
@@ -44,7 +47,7 @@ def special(request):
 @login_required
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('if_not_login'))
+    return HttpResponseRedirect(reverse('home'))
 
 def user_login(request):
     if request.method == 'POST':
@@ -66,9 +69,6 @@ def user_login(request):
             return HttpResponse("Invalid login details supplied!")
     else:
         return render(request, 'BlogApp/login.html', {})
-
-def IfNotLoginView(request):
-    return render(request, 'BlogApp\if_not_login.html')
 
 
 def registrationView(request):
@@ -99,3 +99,14 @@ def registrationView(request):
                             'profile_form':profile_form,
                             'registered':registered})
 
+
+class SearchResultsView(ListView):
+    model = Post
+    template_name = 'search_results.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = Post.objects.filter(
+            Q(title__icontains=query) | Q(writer__icontains=query)
+        )
+        return object_list

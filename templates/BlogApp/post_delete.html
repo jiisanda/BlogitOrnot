@@ -1,9 +1,17 @@
 {% extends 'BlogApp\base.html' %}
 {% block content %}
+{% if user.is_authenticated %}
+    {% if user.id == post.writer.id %}
     <h1>Delete Post</h1>
     <form action="" method="post">
         {% csrf_token %}
         <p>Are you sure you want to delete "{{ post.title }}"?</p>
         <input type="submit" value="Confirm">
     </form>
+    {% else %}
+        You are not authorized to visit this page... Try loging in...
+    {% endif %}
+{% else %}
+    You are not authorized to visit this page... Try loging in...
+{% endif %}
 {% endblock content %}

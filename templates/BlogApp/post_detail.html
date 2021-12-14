@@ -1,10 +1,18 @@
 {% extends 'BlogApp\base.html' %}
+{% block title %}
+    {{ object.title }}
+{% endblock title %}
 {% block content %}
-    <div class="post-entry">
-        <h2> {{ object.title }}</h2>
-        <p>{{ object.body }}</p>
-    </div>
-
-    <p><a href="{% url 'post_edit' post.pk %}">+ Edit Blog Post</a></p>
-    <p><a href="{% url 'post_delete' post.pk %}">- Delete Blog Post</a></p>
+    <br>
+    <h2> {{ object.title }}</h2>
+    <small>
+        <b>Writer: </b>{{ post.writer.username }} @ {{ object.post_date }}<br>
+        {% if user.id == post.writer.id %}
+            <p><a href="{% url 'post_edit' post.pk %}">[Edit]</a>
+            <a href="{% url 'post_delete' post.pk %}">[Delete]</a></p>
+        {% endif %}
+    </small>
+    <hr>
+    <p>{{ object.body }}</p>
+    <a href="{% url 'home' %}" class='btn btn-secondary'>Back</a>
 {% endblock content %}

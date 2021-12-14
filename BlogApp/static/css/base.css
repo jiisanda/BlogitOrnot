@@ -3,12 +3,6 @@ body {
     font-size: 20px;
 }
 
-header {
-    border-bottom: 1px solid #999;
-    margin-bottom: 2rem;
-    display: flex;
-}
-
 header h1 a {
     color: red;
     text-decoration: none;
@@ -17,11 +11,6 @@ header h1 a {
 
 .nav-left {
     margin-right: auto;
-}
-
-.nav-right {
-    display: flex;
-    padding-top: 2rem;
 }
 
 .post-entry {
@@ -60,9 +49,9 @@ header h1 a {
     }
 
 .post-box {
-    border: 1px double black;
+    border: 0px double black;
     margin: 25px 850px 75px 100px;
-    background-color: #FBEEC1;
+    background-color: white;
     padding-left: 10px;
     align-content: center;
 }
