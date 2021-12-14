@@ -1,0 +1,24 @@
+{% extends 'BlogApp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="jumbotron">
+        {% if registered %}
+            <h1>Thanks for Registration...</h1>
+            <p>
+                Create a new Blog Post By clicking '+Blog Post'self...
+                <br> 
+                <h1>Enjoy Blog It Or Not</h1>
+            </p>
+            {% else %}
+                <h1>Register Here!!! </h1>
+                <h3>Fill out the form:</h3>
+                
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ user_form.as_p }}
+                    {{ profile_form.as_p }}
+                    <input type="submit" name="" value="Register">
+                </form>
+            {% endif %}
+{% endblock content %}
