@@ -24,6 +24,8 @@ Updated FrontEnd, User Authentications.
 ## Day 3.5
 
 Updated Front end: NavBars, Home Page Look; 
+
 User Authentication: Accessing Post without Logig in, 
                     Not allowing updating, deleting someone else's code; 
+                    
 Registration of new user
