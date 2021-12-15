@@ -1,4 +1,5 @@
 {% extends 'BlogApp\base.html' %}
+{% load static %}
 {% block title %}
     {{ object.title }}
 {% endblock title %}
@@ -12,6 +13,8 @@
             <a href="{% url 'post_delete' post.pk %}">[Delete]</a></p>
         {% endif %}
     </small>
+    <hr>
+    {{ post.post_picture }}
     <hr>
     <p>{{ object.body }}</p>
     <a href="{% url 'home' %}" class='btn btn-secondary'>Back</a>

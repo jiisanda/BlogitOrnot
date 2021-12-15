@@ -1,22 +1,31 @@
 {% extends 'BlogApp\base.html' %}
+{% load static %}
 {% block content %}
     <br>
     {% if user.is_authenticated %}
         <p>Hello {{ user.username }}!</p>
         {% for post in object_list %}
-                <div class="post-entry">
                     <ul>
-                        <li><h3><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h3></li>
-                        <small>
-                            <b>Writer: </b>{{ post.writer.username }}
-                            {% if user.id == post.writer.id %}
-                                <a href="{% url 'post_edit' post.pk %}">[Edit]</a>
-                                <a href="{% url 'post_delete' post.pk %}">[Delete]</a>
-                            {% endif %}
-                        </small>
-                        <p>{{ post.body }}</p>
+                        <div class="row">
+                            <div class="col-sm-18">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="{{ post.post_picture }}" class="card-img-top" alt="{{ post.title|slice:":20" }}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ post.title }}</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">
+                                            By: {{ post.writer.username }}<br>
+                                            {% if user.id == post.writer.id %}
+                                                <a href="{% url 'post_edit' post.pk %}">[Edit]</a>
+                                                <a href="{% url 'post_delete' post.pk %}">[Delete]</a>
+                                            {% endif %}
+                                        </h6>
+                                        <p class="card-text">{{ post.body|slice:":25" }} ...</p>
+                                        <a href="{% url 'post_detail' post.pk %}" class="btn btn-primary">Read Blog</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </ul>
-                </div>
         {% endfor %}    
     {% else %}
         <p>Hello Welcome to Blog It Or Not, Where you can write Blogs as well as can write your Diary...
@@ -33,8 +42,25 @@
             {% for post in object_list %}
                 <div class="post-entry">
                     <ul>
-                        <li><h3><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h3></li>
-                        <p>{{ post.body }}</p>
+                        <div class="row">
+                            <div class="col-sm-18">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="..." class="card-img-top" alt="{{ post.title|slice:":20" }}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ post.title }}</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">
+                                            By: {{ post.writer.username }}<br>
+                                            {% if user.id == post.writer.id %}
+                                                <a href="{% url 'post_edit' post.pk %}">[Edit]</a>
+                                                <a href="{% url 'post_delete' post.pk %}">[Delete]</a>
+                                            {% endif %}
+                                        </h6>
+                                        <p class="card-text">{{ post.body|slice:":25" }} ...</p>
+                                        <a href="{% url 'post_detail' post.pk %}" class="btn btn-primary">Read Blog</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </ul>
                 </div>
         {% endfor %}    

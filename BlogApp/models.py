@@ -12,6 +12,8 @@ class Post(models.Model):
     body = models.TextField()
     post_date = models.DateTimeField(default=timezone.now)
     category = models.CharField(max_length=225, default="Just a post...")
+    post_picture = models.ImageField(upload_to='post_pictures', blank=True, null=True, 
+                                        default='post_pictures/Blog-It-Or-Not.png')
 
     def __str__(self) -> str:
         return self.title + ' | ' + str(self.writer)
