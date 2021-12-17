@@ -62,3 +62,7 @@ header h1 a {
     text-align: center;
 }
 
+.img-fluid {
+    max-width: 50%;
+    height: auto;
+}
