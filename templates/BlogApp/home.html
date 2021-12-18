@@ -15,7 +15,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">{{ post.title }}</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">
-                                            By: {{ post.writer.username }} - {{ post.category }}<br>
+                                            By: {{ post.writer.username }} - <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a><br>
                                             {% if user.id == post.writer.id %}
                                                 <a href="{% url 'post_edit' post.pk %}">[Edit]</a>
                                                 <a href="{% url 'post_delete' post.pk %}">[Delete]</a>

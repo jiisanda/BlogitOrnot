@@ -47,6 +47,10 @@ class AddCategoryView(CreateView):
     template_name = "BlogApp\category.html"
     fields = '__all__'
 
+def CategoryView(request, categ):
+    category_post = Post.objects.filter(category=categ.replace('-',' '))
+    return render(request, 'BlogApp\categories.html', {'categ':categ.title().replace('-',' '), 'category_post':category_post})
+
 @login_required
 def special(request):
     return HttpResponse("You are logged in, Nice!")

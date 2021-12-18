@@ -1,0 +1,83 @@
+{% extends 'BlogApp\base.html' %}
+{% block content %}
+    <br>
+    {% if user.is_authenticated %}
+        <p>Hello {{ user.username }}!</p>
+        {% if category_post %}
+            <h1>{{ categ }}</h1>
+            {% for post in category_post %}
+                <div class="row">
+                    <div class="col-sm-18">
+                        <div class="card" style="width: 18rem;">
+                            {% if post.post_picture %}
+                                <img src="{{ post.post_picture.url }}" class="card-img-top" alt="{{ post.title|slice:":20" }}">
+                            {% else %}
+                                <img src="media/post_pictures/Blog-It-Or-Not.png" class="card-img-top">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ post.title }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    By: {{ post.writer.username }}<br>
+                                    {% if user.id == post.writer.id %}
+                                        <a href="{% url 'post_edit' post.pk %}">[Edit]</a>
+                                        <a href="{% url 'post_delete' post.pk %}">[Delete]</a>
+                                    {% endif %}
+                                </h6>
+                                <p class="card-text">{{ post.body|slice:":25"|safe }} ...</p>
+                                <a href="{% url 'post_detail' post.pk %}" class="btn btn-primary">Read Blog</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <br>
+            {% endfor %}
+        {% else %}
+                <h2>Sorry, This Category Does Not Exits...</h2>
+        {% endif %}
+    {% else %}
+    <p>Hello Welcome to Blog It Or Not, Where you can write Blogs as well as can write your Diary...
+        <br>
+        Feel Free to Register your self...
+        <br>
+        <a class="navbar-link" href="{% url 'register' %}">Register</a>
+        <br>
+        And If you already have account do Login
+        <br>
+        <a class="navbar-link" href="{% url 'user_login' %}">Do LogIn</a>
+        <br>
+            {% if category_post %}
+                <h1>{{ categ }}</h1>
+                {% for post in category_post %}
+                <p>Here are the Blogs posted on Category at Blog It Or Not...</p>
+                    <div class="row">
+                        <div class="col-sm-18">
+                            <div class="card" style="width: 18rem;">
+                                {% if post.post_picture %}
+                                    <img src="{{ post.post_picture.url }}" class="card-img-top" alt="{{ post.title|slice:":20" }}">
+                                {% else %}
+                                    <img src="media/post_pictures/Blog-It-Or-Not.png" class="card-img-top">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ post.title }}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">
+                                        By: {{ post.writer.username }} - {{ post.category }}<br>
+                                        {% if user.id == post.writer.id %}
+                                            <a href="{% url 'post_edit' post.pk %}">[Edit]</a>
+                                            <a href="{% url 'post_delete' post.pk %}">[Delete]</a>
+                                        {% endif %}
+                                    </h6>
+                                    <p class="card-text">{{ post.body|slice:":25"|safe }} ...</p>
+                                    <a href="{% url 'post_detail' post.pk %}" class="btn btn-primary">Read Blog</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <br>
+            {% endfor %}
+        {% else %}
+                <h2>Sorry, This Category Does Not Exits...</h2>
+        {% endif %}
+    {% endif %}
+   
+{% endblock content %}
+
