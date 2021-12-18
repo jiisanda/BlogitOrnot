@@ -1,0 +1,12 @@
+{% extends 'BlogApp\base.html' %}
+{% block title %}New Category...{% endblock title %}
+{% block content %}
+{% if user.is_authenticated %}
+    <h1>New Category</h1>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class='btn btn-secondary' type="submit" value="Add Category!">
+    </form>
+{% endif %}
+{% endblock content %}

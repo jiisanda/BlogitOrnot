@@ -14,8 +14,11 @@
         {% endif %}
     </small>
     <hr>
-    <img src="{{ post.post_picture.url }}" class="img-fluid">
-    <hr>
+    {% if post.post_picture %}
+        <img src="{{ post.post_picture.url }}" class="img-fluid">
+        <hr>
+    {% endif %}
+    
     <p>{{ object.body }}</p>
     <a href="{% url 'home' %}" class='btn btn-secondary'>Back</a>
 {% endblock content %}

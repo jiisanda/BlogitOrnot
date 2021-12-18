@@ -1,6 +1,8 @@
 BlogProject/env.py
 BlogProject/__pycache__/~.pyc
 BlogEnv2
+BlogApp/media/post_pictures/
+BlogApp/media/profile_pictures/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

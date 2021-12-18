@@ -4,27 +4,30 @@
     {% if user.is_authenticated %}
         <p>Hello {{ user.username }}!</p>
         {% for post in object_list %}
-                    <ul>
                         <div class="row">
                             <div class="col-sm-18">
                                 <div class="card" style="width: 18rem;">
-                                    <img src="{{ post.post_picture.url }}" class="card-img-top" alt="{{ post.title|slice:":20" }}">
+                                    {% if post.post_picture %}
+                                        <img src="{{ post.post_picture.url }}" class="card-img-top" alt="{{ post.title|slice:":20" }}">
+                                    {% else %}
+                                        <img src="media/post_pictures/Blog-It-Or-Not.png" class="card-img-top">
+                                    {% endif %}
                                     <div class="card-body">
                                         <h5 class="card-title">{{ post.title }}</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">
-                                            By: {{ post.writer.username }}<br>
+                                            By: {{ post.writer.username }} - {{ post.category }}<br>
                                             {% if user.id == post.writer.id %}
                                                 <a href="{% url 'post_edit' post.pk %}">[Edit]</a>
                                                 <a href="{% url 'post_delete' post.pk %}">[Delete]</a>
                                             {% endif %}
                                         </h6>
-                                        <p class="card-text">{{ post.body|slice:":25" }} ...</p>
+                                        <p class="card-text">{{ post.body|slice:":25"|safe }} ...</p>
                                         <a href="{% url 'post_detail' post.pk %}" class="btn btn-primary">Read Blog</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </ul>
+                    <br>
         {% endfor %}    
     {% else %}
         <p>Hello Welcome to Blog It Or Not, Where you can write Blogs as well as can write your Diary...
@@ -44,8 +47,11 @@
                         <div class="row">
                             <div class="col-sm-18">
                                 <div class="card" style="width: 18rem;">
-                                    <img src="..." class="card-img-top" alt="{{ post.title|slice:":20" }}">
-                                    <div class="card-body">
+                                {% if post.post_picture %}
+                                    <img src="{{ post.post_picture.url }}" class="card-img-top" alt="{{ post.title|slice:":20" }}">
+                                {% else %}
+                                    <img src="media/post_pictures/Blog-It-Or-Not.png" class="card-img-top">
+                                {% endif %}                                    <div class="card-body">
                                         <h5 class="card-title">{{ post.title }}</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">
                                             By: {{ post.writer.username }}<br>

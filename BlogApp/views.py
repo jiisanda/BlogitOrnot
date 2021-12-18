@@ -9,9 +9,9 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 
-from BlogApp.forms import UserForm, UserProfileInfoForm
+from BlogApp.forms import UserForm, UserProfileInfoForm, PostForm, UpdateForm
 
-from .models import Post
+from .models import Post, Category
 
 from django.db.models import Q
 
@@ -27,18 +27,25 @@ class BlogDetailView(DetailView):
 
 class BlogCreateView(CreateView):
     model = Post
+    form_class = PostForm
     template_name = 'BlogApp\post_new.html'
-    fields = '__all__'
+    # fields = '__all__'  ---- form_class is doin' all...
 
 class BlogUpdateView(UpdateView):
     model = Post
+    form_class = UpdateForm
     template_name = "BlogApp\post_edit.html"
-    fields = ['title', 'body']
+    # fields = ['title', 'body']
 
 class BlogDeleteView(DeleteView):
     model = Post
     template_name = "BlogApp\post_delete.html"
     success_url = reverse_lazy('home')
+
+class AddCategoryView(CreateView):
+    model = Category
+    template_name = "BlogApp\category.html"
+    fields = '__all__'
 
 @login_required
 def special(request):
