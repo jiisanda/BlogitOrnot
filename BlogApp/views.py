@@ -20,10 +20,24 @@ from django.db.models import Q
 class BlogListView(ListView):
     model = Post
     template_name='BlogApp\home.html'
+    categ = Category.objects.all()
+    ordering = ['-post_date']
+
+    def get_context_data(self, *args, **kwargs):
+        categ_menu = Category.objects.all()
+        context = super(BlogListView, self).get_context_data(*args, **kwargs)
+        context["categ_menu"] = categ_menu
+        return context
 
 class BlogDetailView(DetailView):
     model = Post
     template_name = 'BlogApp\post_detail.html'
+
+    def get_context_data(self, *args, **kwargs):
+        categ_menu = Category.objects.all()
+        context = super(BlogDetailView, self).get_context_data(*args, **kwargs)
+        context["categ_menu"] = categ_menu
+        return context
 
 class BlogCreateView(CreateView):
     model = Post
@@ -31,11 +45,24 @@ class BlogCreateView(CreateView):
     template_name = 'BlogApp\post_new.html'
     # fields = '__all__'  ---- form_class is doin' all...
 
+    def get_context_data(self, *args, **kwargs):
+        categ_menu = Category.objects.all()
+        context = super(BlogCreateView, self).get_context_data(*args, **kwargs)
+        context["categ_menu"] = categ_menu
+        return context
+
+
 class BlogUpdateView(UpdateView):
     model = Post
     form_class = UpdateForm
     template_name = "BlogApp\post_edit.html"
     # fields = ['title', 'body']
+
+    def get_context_data(self, *args, **kwargs):
+        categ_menu = Category.objects.all()
+        context = super(BlogUpdateView, self).get_context_data(*args, **kwargs)
+        context["categ_menu"] = categ_menu
+        return context
 
 class BlogDeleteView(DeleteView):
     model = Post
@@ -50,6 +77,10 @@ class AddCategoryView(CreateView):
 def CategoryView(request, categ):
     category_post = Post.objects.filter(category=categ.replace('-',' '))
     return render(request, 'BlogApp\categories.html', {'categ':categ.title().replace('-',' '), 'category_post':category_post})
+
+def CategoryListView(request, categ):
+    categ_menu = Category.objects.all()
+    return render(request, 'BlogApp\category_list.html', {'categ_menu':categ_menu})
 
 @login_required
 def special(request):
