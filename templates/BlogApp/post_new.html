@@ -1,11 +1,17 @@
 {% extends 'BlogApp\base.html' %}
 {% block content %}
 {% if user.is_authenticated %}
-    <h1>New Post</h1>
+    <h1>New Post...</h1>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Save">
     </form>
+
+    <script>
+        var name="{{ user.id }}";
+        document.getElementById("writer_name").value = name;
+    </script>
+
 {% endif %}
 {% endblock content %}
