@@ -1,8 +1,7 @@
 from os import name
-from typing import Pattern
 from django.urls import path
 from .views import BlogListView, BlogDetailView, BlogCreateView, BlogUpdateView
-from .views import BlogDeleteView, SearchResultsView, AddCategoryView, CategoryView
+from .views import BlogDeleteView, SearchResultsView, AddCategoryView
 from BlogApp import views
 
 # TEMPLATE URLS
@@ -16,5 +15,5 @@ urlpatterns = [
     path('user_login/', views.user_login, name="user_login"),
     path('register/', views.registrationView, name='register'),
     path('search/', SearchResultsView.as_view(), name='search_results'),
-    path('category/<str:categ>/', CategoryView, name='category'),
+    path('category/<str:categ>/', views.CategoryView, name='category'),
 ]

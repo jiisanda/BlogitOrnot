@@ -45,12 +45,6 @@ class BlogCreateView(CreateView):
     template_name = 'BlogApp\post_new.html'
     # fields = '__all__'  ---- form_class is doin' all...
 
-    def get_context_data(self, *args, **kwargs):
-        categ_menu = Category.objects.all()
-        context = super(BlogCreateView, self).get_context_data(*args, **kwargs)
-        context["categ_menu"] = categ_menu
-        return context
-
 
 class BlogUpdateView(UpdateView):
     model = Post
@@ -73,6 +67,7 @@ class AddCategoryView(CreateView):
     model = Category
     template_name = "BlogApp\category.html"
     fields = '__all__'
+    success_url = reverse_lazy('home')
 
 def CategoryView(request, categ):
     category_post = Post.objects.filter(category=categ.replace('-',' '))

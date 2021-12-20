@@ -3,7 +3,7 @@ BlogProject/__pycache__/~.pyc
 BlogEnv2
 BlogApp/media/post_pictures/
 BlogApp/media/profile_pictures/
-
+BlogApp/migrations
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

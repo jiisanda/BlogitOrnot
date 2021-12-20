@@ -4,7 +4,7 @@ from django.forms import fields
 from django.forms.widgets import PasswordInput
 from BlogApp.models import UserProfileInfo, Post, Category
 
-# choices = [('Coding', 'Coding'), ('Entertainment', 'Entertainment'), ('Education', 'Education')]  --- hard Coding
+# choices = [('Coding', 'Coding'), ('Entertainment', 'Entertainment'), ('Education', 'Education')]
 choices = Category.objects.all().values_list('name', 'name')
 
 choices_list =[]
@@ -27,7 +27,7 @@ class UserProfileInfoForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta():
         model = Post
-        fields = ('title', 'writer','category', 'body', 'post_date', 'post_picture')
+        fields = ('title', 'writer', 'category', 'body', 'post_date', 'post_picture')
 
         widgets = {
             'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Title of the blog...'}),
@@ -43,7 +43,7 @@ class PostForm(forms.ModelForm):
 class UpdateForm(forms.ModelForm):
     class Meta():
         model = Post
-        fields = ('title', 'category', 'body', 'post_date', 'post_picture')
+        fields = ('title', 'body', 'category','post_date', 'post_picture')
 
         widgets = {
             'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Title of the blog...'}),

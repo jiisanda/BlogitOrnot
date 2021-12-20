@@ -19,6 +19,8 @@ from BlogApp import views
 from django.conf.urls.static import static
 from django.conf import settings
 
+app_aname = "BlogApp"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('BlogApp.urls')),
