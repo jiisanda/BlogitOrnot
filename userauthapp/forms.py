@@ -1,8 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.views.generic.edit import FormMixin
 from userauthapp.models import UserProfileInfo
-from django.contrib.auth.forms import PasswordChangeForm, UserChangeForm
+from django.contrib.auth.forms import PasswordChangeForm
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())

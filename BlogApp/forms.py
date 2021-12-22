@@ -1,5 +1,4 @@
 from django import forms
-from django.contrib.auth.models import User
 from BlogApp.models import Post, Category
 
 # choices = [('Coding', 'Coding'), ('Entertainment', 'Entertainment'), ('Education', 'Education')]
