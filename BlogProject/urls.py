@@ -27,7 +27,6 @@ urlpatterns = [
     path('', include('BlogApp.urls')),
     path('', include('userauthapp.urls')),
     path('logout/', views.user_logout, name='logout'),
-    path('special/', views.special, name="special"),
 ]
 
 

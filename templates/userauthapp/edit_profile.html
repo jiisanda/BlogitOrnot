@@ -1,0 +1,14 @@
+{% extends 'BlogApp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1>Edit Profile!!! </h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <p>To Change Password <a href="{% url 'change_password' %}"">Click Here</a></p>
+            <input type="submit" name="" value="Save Changes!">
+        </form>
+    </div>
+{% endblock content %}

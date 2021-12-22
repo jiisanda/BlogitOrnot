@@ -1,14 +1,15 @@
+from django.contrib.auth.views import PasswordChangeView
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from userauthapp.forms import UserForm, UserProfileInfoForm
+from django.urls.base import reverse_lazy
+from userauthapp.forms import UserForm, UserProfileInfoForm, PasswordChangingForm
+from django.views import generic
+from .forms import ProfileEditForm
 # Create your views here
 
-@login_required
-def special(request):
-    return HttpResponse("You are logged in, Nice!")
 
 @login_required
 def user_logout(request):
@@ -65,3 +66,22 @@ def registrationView(request):
                             'profile_form':profile_form,
                             'registered':registered})
 
+
+class ProfileEditView(generic.UpdateView):
+    form_class = ProfileEditForm
+    template_name = 'userauthapp/edit_profile.html'
+    success_url = reverse_lazy('home')
+
+    def get_object(self):
+        return self.request.user
+
+
+class PasswordsChangeView(PasswordChangeView):
+    form_class = PasswordChangingForm
+    # from_class = PasswordChangeForm
+    template_name='userauthapp/change_password.html'
+    success_url = reverse_lazy('password_changed')
+
+
+def PasswordSuccessView(request):
+    return render(request, 'userauthapp/password_success.html', {})

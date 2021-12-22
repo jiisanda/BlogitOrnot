@@ -50,6 +50,18 @@
                   </ul>
                 </li>
               {% endif %}
+              <!--Dropdown for Profile-->              
+              {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Profile
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="#">Visit Profile</a></li>
+                      <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Profile</a></li>
+                  </ul>
+                </li>
+              {% endif %}
             </ul>
           </div>
         </div>
