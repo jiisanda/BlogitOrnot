@@ -11,11 +11,9 @@ class UserForm(forms.ModelForm):
 
 
 class UserProfileInfoForm(forms.ModelForm):
-    phone_number1 = forms.CharField(label='Phone Number 1*', widget=forms.TextInput(attrs={'placeholder':'Phone Number 1'}))
-    phone_number2 = forms.CharField(label='Phone Number 2', required=False, widget=forms.TextInput(attrs={'placeholder':'Phone Number 2'}))
     class Meta():
         model = UserProfileInfo
-        fields = ( 'phone_number1', 'phone_number2', 'portfolio_site', 'profile_picture')
+        fields = ('portfolio_site',)
 
 
 class ProfileEditForm(forms.ModelForm):
@@ -23,12 +21,10 @@ class ProfileEditForm(forms.ModelForm):
     first_name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class':'form-control'}))
     last_name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class':'form-control'}))
     username = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class':'form-control'}))
-    phone_number1 = forms.CharField(label='Phone Number 1*', widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Phone Number 1'}))
-    phone_number2 = forms.CharField(label='Phone Number 2', required=False, widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Phone Number 2'}))
 
     class Meta():
         model = User
-        fields = ('first_name', 'last_name' ,'username', 'email', 'phone_number1', 'phone_number2')
+        fields = ('first_name', 'last_name' ,'username', 'email')
 
 
 class PasswordChangingForm(PasswordChangeForm):

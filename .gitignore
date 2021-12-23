@@ -1,8 +1,8 @@
 BlogProject/env.py
 BlogProject/__pycache__/~.pyc
 BlogEnv2
-media/post_pictures/
-media/profile_pics/
+BlogApp/media/post_pictures/
+BlogApp/media/profile_pics/
 BlogApp/migrations
 userauthapp/migrations
 # Byte-compiled / optimized / DLL files

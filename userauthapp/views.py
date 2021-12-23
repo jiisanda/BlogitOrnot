@@ -1,5 +1,5 @@
 from django.contrib.auth.views import PasswordChangeView
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -8,6 +8,8 @@ from django.urls.base import reverse_lazy
 from userauthapp.forms import UserForm, UserProfileInfoForm, PasswordChangingForm
 from django.views import generic
 from .forms import ProfileEditForm
+from django.views.generic import DetailView
+from BlogApp.models import Profile
 # Create your views here
 
 
@@ -85,3 +87,15 @@ class PasswordsChangeView(PasswordChangeView):
 
 def PasswordSuccessView(request):
     return render(request, 'userauthapp/password_success.html', {})
+
+class ShowProfilePageView(DetailView):
+    model = Profile
+    template_name = 'userauthapp/user_profile.html'
+
+    def get_context_data(self,*args, **kwargs):
+        users = Profile.objects.all()
+        context = super(ShowProfilePageView, self).get_context_data(*args, **kwargs)
+        
+        page_user = get_object_or_404(Profile, id=self.kwargs['pk'])
+        context["page_user"] = page_user
+        return context
