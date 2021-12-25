@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 
 
 # Create your models here.
@@ -20,7 +21,8 @@ class Post(models.Model):
         'auth.User',
         on_delete=models.CASCADE,
     )
-    body = models.TextField()
+    body = RichTextField(blank="True", null="True")
+    # body = models.TextField()
     post_date = models.DateField(default=timezone.now)
     category = models.CharField(max_length=225, default="Just a post...")
     post_picture = models.ImageField(upload_to='post_pictures', blank=True, null=True)
