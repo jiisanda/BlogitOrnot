@@ -1,13 +1,15 @@
 from django.contrib.auth.views import PasswordChangeView
+from django.db.models import fields
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.urls.base import reverse_lazy
+from django.views.generic.base import TemplateResponseMixin
 from userauthapp.forms import UserForm, UserProfileInfoForm, PasswordChangingForm
 from django.views import generic
-from .forms import ProfileEditForm
+from .forms import ProfileEditForm, UserProfileEditForm
 from django.views.generic import DetailView
 from BlogApp.models import Profile
 # Create your views here
@@ -93,9 +95,20 @@ class ShowProfilePageView(DetailView):
     template_name = 'userauthapp/user_profile.html'
 
     def get_context_data(self,*args, **kwargs):
-        users = Profile.objects.all()
+        # users = Profile.objects.all()
         context = super(ShowProfilePageView, self).get_context_data(*args, **kwargs)
         
         page_user = get_object_or_404(Profile, id=self.kwargs['pk'])
         context["page_user"] = page_user
         return context
+
+
+class EditProfilePageView(generic.UpdateView):
+    model = Profile
+    form_class = UserProfileEditForm
+    template_name = 'userauthapp/edit_user_profile.html'
+    # fields = ['bio', 'profile_picture', 'portfolio_site', 'github_username', 'github_url', 'twitter_username', 'twitter_url', 'instagram_username', 'instagram_url', 'facebook_username', 'facebook_url']
+    
+    success_url = reverse_lazy('home')
+
+    
