@@ -15,8 +15,7 @@ class UserForm(forms.ModelForm):
 class UserProfileInfoForm(forms.ModelForm):
     class Meta():
         model = UserProfileInfo
-        fields = ('portfolio_site',)
-
+        fields = ()
 
 class ProfileEditForm(forms.ModelForm):
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))
@@ -42,7 +41,7 @@ class PasswordChangingForm(PasswordChangeForm):
 class UserProfileEditForm(forms.ModelForm):
     class Meta():
         model = Profile
-        fields = ['bio', 'profile_picture', 'portfolio_site', 'github_username', 'github_url', 'twitter_username', 'twitter_url', 'instagram_username', 'instagram_url', 'facebook_username', 'facebook_url']
+        fields = ['bio','phone_number', 'profile_picture', 'portfolio_site', 'github_username', 'github_url', 'twitter_username', 'twitter_url', 'instagram_username', 'instagram_url', 'facebook_username', 'facebook_url']
 
         widgets = {
             'bio':forms.Textarea(attrs={'class':'form-control', 'placeholder':'Bio...', 'rows':4, 'cols':40}),
