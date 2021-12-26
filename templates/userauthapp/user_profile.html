@@ -111,18 +111,8 @@ a:link, a:visited,  a:hover, a:active
           <div class="card h-100">
             <div class="card-body">
               <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">your</i>Posts</h6>
-              {% for post in posts %}
-
-                Username: {{ post.writer.username }}
-                Post: {{ post.title }}
-            
-              <br>
-          
-          {% endfor %}
-              <small>Web Design</small>
-              <div class="progress mb-3" style="height: 5px">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+              {% comment %} Add Posts Here {% endcomment %}
+              <h5>All Your posts here</h5> 
             </div>
           </div>
         </div>
