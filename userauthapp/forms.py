@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.forms import widgets
-from BlogApp.models import Profile
+from .models import Profile
 from userauthapp.models import UserProfileInfo
 from django.contrib.auth.forms import PasswordChangeForm
 

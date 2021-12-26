@@ -11,7 +11,7 @@ from userauthapp.forms import UserForm, UserProfileInfoForm, PasswordChangingFor
 from django.views import generic
 from .forms import ProfileEditForm, UserProfileEditForm
 from django.views.generic import DetailView
-from BlogApp.models import Profile
+from .models import Profile
 # Create your views here
 
 
