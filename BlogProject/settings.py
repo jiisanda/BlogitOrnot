@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'BlogApp.apps.BlogappConfig',
     'userauthapp.apps.UserauthappConfig',
+    'notes.apps.NotesConfig',
     'ckeditor',
 ]
 

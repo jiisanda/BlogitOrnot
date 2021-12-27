@@ -5,6 +5,7 @@ BlogApp/media/post_pictures/
 BlogApp/media/profile_pics/
 BlogApp/migrations
 userauthapp/migrations
+notes/migrations
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
