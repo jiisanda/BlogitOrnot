@@ -1,6 +1,7 @@
 from django.urls import path
 from userauthapp import views
-from .views import ProfileEditView, PasswordsChangeView, PasswordSuccessView, ShowProfilePageView, EditProfilePageView
+from .views import ProfileEditView, PasswordsChangeView, PasswordSuccessView, ShowProfilePageView
+from .views import EditProfilePageView
 
 # app_name="UserAuthApp"
 # TEMPLATE URLS

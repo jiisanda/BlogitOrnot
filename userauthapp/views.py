@@ -1,12 +1,10 @@
 from django.contrib.auth.views import PasswordChangeView
-from django.db.models import fields
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.urls.base import reverse_lazy
-from django.views.generic.base import TemplateResponseMixin
 from userauthapp.forms import UserForm, UserProfileInfoForm, PasswordChangingForm
 from django.views import generic
 from .forms import ProfileEditForm, UserProfileEditForm
