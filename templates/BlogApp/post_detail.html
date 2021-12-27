@@ -4,7 +4,19 @@
     {{ object.title }}
 {% endblock title %}
 {% block content %}
+    <style>
+        #profile {
+            float:right;
+        }
+        a:link, a:visited,  a:hover, a:active
+        {
+        color: #FF5733;
+        text-decoration: none;
+        }
+    </style>
+
     <br>
+    
     <h2> {{ object.title }}</h2>
     <small>
         <b>Writer: </b>{{ post.writer.username }} @ {{ object.post_date }}<br>
@@ -21,4 +33,20 @@
     
     <p>{{ object.body|safe }}</p>
     <a href="{% url 'home' %}" class='btn btn-secondary'>Back</a>
+    <small>
+        <div class="card mb-3" style="max-width: 600px;" id="profile">
+            <div class="row g-12">
+                <div class="col-md-3">
+                    <img src="{{ post.writer.profile.profile_picture.url }}" class="rounded-circle" width="150" height="150" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <a href="{% url 'show_profile_page' post.writer.profile.id %}"><h5 class="card-title">{{ post.writer.username }}</h5></a>
+                        <p class="card-text">{{ post.writer.profile.bio }}</p>
+                        <p class="card-text"><small class="text-muted">Visit My Profile Here...</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </small>
 {% endblock content %}

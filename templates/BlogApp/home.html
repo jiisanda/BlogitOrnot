@@ -8,9 +8,9 @@
                 <div class="row g-0">
                     <div class="col-md-4">
                         {% if post.post_picture %}
-                            <img src="{{ post.post_picture.url }}" class="card-img-top" alt="{{ post.title|slice:":20" }}">
+                            <img src="{{ post.post_picture.url }}" class="card-img-top" alt="{{ post.title|slice:":20" }}" width="150" height="180">
                         {% else %}
-                            <img src="media/Blog-It-Or-Not.png" class="card-img-top">
+                            <img src="media/Blog-It-Or-Not.png" class="card-img-top" width="150" height="180">
                         {% endif %}
                     </div>
                     <div class="col-md-8">
@@ -48,9 +48,9 @@
                     <div class="row g-0">
                         <div class="col-md-4">
                             {% if post.post_picture %}
-                                <img src="{{ post.post_picture.url }}" class="card-img-top" alt="{{ post.title|slice:":20" }}">
+                                <img src="{{ post.post_picture.url }}" class="card-img-top" alt="{{ post.title|slice:":20" }}" width="150" height="180">
                             {% else %}
-                                <img src="media/Blog-It-Or-Not.png" class="card-img-top">
+                                <img src="media/Blog-It-Or-Not.png" class="card-img-top" width="150" height="180">
                             {% endif %}
                         </div>
                         <div class="col-md-8">

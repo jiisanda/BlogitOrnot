@@ -10,6 +10,8 @@ from django.views import generic
 from .forms import ProfileEditForm, UserProfileEditForm
 from django.views.generic import DetailView
 from .models import Profile
+import django.contrib.auth.hashers as hasher
+
 # Create your views here
 
 
