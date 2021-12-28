@@ -30,6 +30,11 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{% url 'add_category' %}">+ Add Category</a>
             </li>
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'add_notes' %}?notesid=0">Add Note</a>
+                </li>>
+            </ul>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'logout' %}">LogOut</a>
             </li>
@@ -66,11 +71,6 @@
                 </ul>
               </li>
             {% endif %}
-            <ul class="nav justify-content-end">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'add_notes' %}?notesid=0">Add Note</a>
-                </li>>
-            </ul>
           </ul>
         </div>
       </div>

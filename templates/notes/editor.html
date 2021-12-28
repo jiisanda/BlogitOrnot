@@ -25,7 +25,18 @@ Notes...
     <div class="col-9">
         <form method="post" action="{% url 'add_notes' %}">
             {% csrf_token %}
+            <input type="hidden" name="notesid" value="{{ notesid }}">
             <div class="row mb-3">
+                <figure class="text-end">
+                    <figcaption class="blockquote-footer">
+                        {% if note %}
+                            Created at: {{ note.create_at|date:"m/d Y" }} / Modified at: {{ note.modified_at|date:"n/d Y" }}
+                        {% endif %}
+                    </figcaption>
+                  </figure>
+                <small>
+                    
+                </small>
                 <label class="col-sm-2 col-form-label">Title</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="title" placeholder="Title" {% if note %} value="{{ note.title }}" {% endif %}>
@@ -34,9 +45,18 @@ Notes...
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Content</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" rows="5" name="note_content" placeholder="Your Note" {% if note %} {{ note.note_content }} {% endif %}></textarea>
+                    <textarea class="form-control" rows="5" name="note_content" placeholder="Your Note">{% if note %} {{ note.note_content }} {% endif %}</textarea>
                 </div>
             </div>
+            <div class="field">
+                <div class="control">
+                    <button class="btn btn-dark">Note it!</button>
+                    {% if note %}
+                        <a class="btn btn-primary" href="{% url 'delete_note' note.id %}" role="button">Delete</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% comment %} <input type="submit" value="Note It!"> {% endcomment %}
         </form>
     </div>
     </div>
