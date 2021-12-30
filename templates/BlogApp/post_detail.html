@@ -8,11 +8,21 @@
         #profile {
             float:right;
         }
-        a:link, a:visited,  a:hover, a:active
-        {
-        color: #FF5733;
-        text-decoration: none;
+        #profile_img {
+            margin-top: 20px;
+            margin-left: 20px;
+            margin-bottom: 20px;
         }
+        span {
+            display: inline-block;
+        }
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+            height:50%;
+          }
     </style>
 
     <br>
@@ -24,11 +34,23 @@
             <p><a href="{% url 'post_edit' post.pk %}">[Edit]</a>
             <a href="{% url 'post_delete' post.pk %}">[Delete]</a></p>
         {% endif %}
+        <form action="{% url 'like_post' post.pk %}" method="POST" id="profile">
+            {% csrf_token %}
+            <button type="submit" name="post_id" value={{ post.id }} class="btn btn-primary btn-sm position-relative">
+                Like
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {{ total_likes }}
+                  <span class="visually-hidden">Likes</span>
+                </span>
+              </button>
+        </form>
     </small>
     <hr>
     {% if post.post_picture %}
-        <img src="{{ post.post_picture.url }}" class="img-fluid">
+    <span>
+        <img id="post_img" src="{{ post.post_picture.url }}" class="img-fluid center" width="50%" height="50%">
         <hr>
+    </span>
     {% endif %}
     
     <p>{{ object.body|safe }}</p>
@@ -37,13 +59,15 @@
         <div class="card mb-3" style="max-width: 600px;" id="profile">
             <div class="row g-12">
                 <div class="col-md-4">
-                    <img src="{{ post.writer.profile.profile_picture.url }}" class="rounded-circle" width="150" height="150" alt="...">
+                    <img src="{{ post.writer.profile.profile_picture.url }}" class="rounded-3" width="150" height="150" id="profile_img" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <a href="{% url 'show_profile_page' post.writer.profile.id %}"><h5 class="card-title">{{ post.writer.username }}</h5></a>
-                        <p class="card-text">{{ post.writer.profile.bio }}</p>
-                        <p class="card-text"><small class="text-muted">Visit My Profile Here...</small></p>
+                        <small>
+                            <a href="{% url 'show_profile_page' post.writer.profile.id %}"><h5 class="card-title">{{ post.writer.username }}</h5></a>
+                            <p class="card-text">{{ post.writer.profile.bio }}</p>
+                            <p class="card-text"><small class="text-muted">Visit My Profile Here...</small></p>
+                        </small>        
                     </div>
                 </div>
             </div>

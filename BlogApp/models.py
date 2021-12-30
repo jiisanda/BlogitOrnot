@@ -27,11 +27,15 @@ class Post(models.Model):
     category = models.CharField(max_length=225, default="Just a post...")
     post_picture = models.ImageField(upload_to='post_pictures', blank=True, null=True)
                                         # default='post_pictures/Blog-It-Or-Not.png')
+    likes = models.ManyToManyField(User, related_name='blog_posts')
 
     def __str__(self):
         return self.title + ' | ' + str(self.writer)
     
     def get_absolute_url(self):
         return reverse("post_detail", args=[str(self.id)])
+
+    def total_likes(self):
+        return self.likes.count()
 
 

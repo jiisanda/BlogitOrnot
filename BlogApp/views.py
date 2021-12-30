@@ -1,8 +1,9 @@
+from django.urls.base import reverse
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-
-from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
 from BlogApp.forms import PostForm, UpdateForm
 
 from .models import Post, Category
@@ -29,7 +30,12 @@ class BlogDetailView(DetailView):
     def get_context_data(self, *args, **kwargs):
         categ_menu = Category.objects.all()
         context = super(BlogDetailView, self).get_context_data(*args, **kwargs)
+        # to know which post user is on
+        stuff = get_object_or_404(Post, id=self.kwargs['pk'])     # this says look up a post with an id and assign it to stuff
+        total_likes = stuff.total_likes()   # take total_likes form the stuff which gets calculated form models.py 
+        
         context["categ_menu"] = categ_menu
+        context['total_likes'] = total_likes
         return context
 
 class BlogCreateView(CreateView):
@@ -69,4 +75,12 @@ def CategoryView(request, categ):
 def CategoryListView(request, categ):
     categ_menu = Category.objects.all()
     return render(request, 'BlogApp\category_list.html', {'categ_menu':categ_menu})
+
+
+def LikeView(request, pk):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))    # here i am filling out the form
+                                            # and submitting it and when submitting grabbing the post.id by request.POST.get
+                                            # why post_id? bcz in post_detail.html the name of the button is it.
+    post.likes.add(request.user)    # adding the user that liked the post as in "harsh liked the post by TheWhiteWolf"
+    return HttpResponseRedirect(reverse('post_detail',args=[str(pk)]))  # args to know which blog post we are returning/redirecting
 
