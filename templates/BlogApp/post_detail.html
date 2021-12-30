@@ -36,7 +36,7 @@
         {% endif %}
         <form action="{% url 'like_post' post.pk %}" method="POST" id="profile">
             {% csrf_token %}
-            <button type="submit" name="post_id" value={{ post.id }} class="btn btn-primary btn-sm position-relative">
+            <button type="submit" name="post_id" value={{ post.id }} class="btn btn-primary btn-sm position-relative pull-right">
                 Like
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     {{ total_likes }}
@@ -54,7 +54,6 @@
     {% endif %}
     
     <p>{{ object.body|safe }}</p>
-    <a href="{% url 'home' %}" class='btn btn-secondary'>Back</a>
     <small>
         <div class="card mb-3" style="max-width: 600px;" id="profile">
             <div class="row g-12">
@@ -73,4 +72,27 @@
             </div>
         </div>
     </small>
+
+    <hr>
+    
+    <br><br><br>
+    <br><br><br>
+    <br>
+    <h2>Can you write your thoughts...</h2>
+    <br>
+    {% if not post.comments.all %}      <!--We can call comments through post bcoz they are linked-->
+                                        <!--Why comments? bcoz related_name = comments in model-->
+        No Comments Yets... <a href="{% url 'add_comment' post.pk %}">Add One</a>
+    {% else %}
+        <h4>Add Comments For the post <a href="{% url 'add_comment' post.pk %}">here</a>...</h4>
+        {% for comment in post.comments.all %}      <!--For each comment in there-->
+            <strong>{{ comment.comment_name }} - {{ comment.comment_date }}</strong>
+            <br>
+            {{ comment.comment_body }}
+            <br><br>
+            <hr>
+            <br>
+        {% endfor %}
+    {% endif %}
+
 {% endblock content %}

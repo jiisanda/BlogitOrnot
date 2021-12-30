@@ -1,5 +1,6 @@
 from django import forms
-from BlogApp.models import Post, Category
+from django.forms import widgets
+from BlogApp.models import Comment, Post, Category
 
 # choices = [('Coding', 'Coding'), ('Entertainment', 'Entertainment'), ('Education', 'Education')]
 choices = Category.objects.all().values_list('name', 'name')
@@ -35,4 +36,15 @@ class UpdateForm(forms.ModelForm):
             'body': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Body of the Blog...'}),
             'post_date': forms.DateInput(),   
             # 'post_picture': forms.ImageField(),
+        }
+
+
+class AddCommentForm(forms.ModelForm):
+    class Meta():
+        model = Comment
+        fields = ('comment_name', 'comment_body')
+
+        widgets = {
+            'comment_name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Your Name'}),
+            'comment_body': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Comment...'}),
         }

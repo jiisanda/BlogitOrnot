@@ -1,0 +1,74 @@
+{% extends 'BlogApp\base.html' %}
+{% block content %}
+    <h1>Add Comment...</h1>
+    <form class="form-block" action="" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="row g-2">
+                <div class="col-md">
+                    <div class="form-floating">
+                        {% if user.is_authenticated %}
+                            <input name="comment_name" type="text" class="form-control" id="floatingInputGrid" placeholder="My Name" value="{{ user.username }}">
+                        {% else %}
+                            <input name="comment_name" type="text" class="form-control" id="floatingInputGrid" placeholder="My Name" value="">
+                        {% endif %}
+                      <label for="comment_name">Your Name</label>
+                    </div>
+                </div>
+                {% comment %} <div class="col-md">
+                    <div class="form-floating">
+                        {% if user.is_authenticated %}
+                            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" value="{{ user.email }}">
+                        {% else %}
+                            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" value="">
+                        {% endif %}
+                        <label for="floatingInputGrid">Email address</label>
+                    </div>
+                </div>                   {% endcomment %}
+            </div>
+        </div>
+        <br>
+        <div class="form-floating">
+            <textarea name="comment_body" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+            <label for="comment_body">Comments</label>
+        </div>
+        <br>
+        <input type="submit" class="btn btn-primary pull-right" value="Submit">
+    </form>
+
+{% endblock content %}
+
+
+{% comment %} <form class="form-block">
+    <div class="row">
+        <div class="row g-2">
+            <div class="col-md">
+                <div class="form-floating">
+                    {% if user.is_authenticated %}
+                        <input type="text" class="form-control" id="floatingInputGrid" placeholder="My Name" value="{{ user.username }}">
+                    {% else %}
+                        <input type="text" class="form-control" id="floatingInputGrid" placeholder="My Name" value="">
+                    {% endif %}
+                  <label for="floatingInputGrid">Your Name</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    {% if user.is_authenticated %}
+                        <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" value="{{ user.email }}">
+                    {% else %}
+                        <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" value="">
+                    {% endif %}
+                    <label for="floatingInputGrid">Email address</label>
+                </div>
+            </div>                  
+        </div>
+    </div>
+    <br>
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+        <label for="floatingTextarea">Comments</label>
+    </div>
+    <br>
+    <a class="btn btn-primary pull-right">submit</a>
+</form> {% endcomment %}

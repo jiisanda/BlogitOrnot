@@ -4,9 +4,9 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from BlogApp.forms import PostForm, UpdateForm
+from BlogApp.forms import PostForm, UpdateForm, AddCommentForm
 
-from .models import Post, Category
+from .models import Comment, Post, Category
 
 
 # Create your views here.
@@ -84,3 +84,18 @@ def LikeView(request, pk):
     post.likes.add(request.user)    # adding the user that liked the post as in "harsh liked the post by TheWhiteWolf"
     return HttpResponseRedirect(reverse('post_detail',args=[str(pk)]))  # args to know which blog post we are returning/redirecting
 
+class AddCommentView(CreateView):
+    model = Comment
+    form_class = AddCommentForm
+    template_name = 'BlogApp/add_comment.html'
+
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['pk']
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        post_id=self.kwargs['pk']
+        return reverse_lazy('post_detail', kwargs={'pk': post_id})
+
+
+    # success_url = reverse_lazy('post_detail')
