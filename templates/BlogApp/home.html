@@ -24,7 +24,7 @@
                                 {% endif %}
                             </h6>
                             <p class="card-text">{{ post.body|slice:":25"|safe }}</p>
-                            <a href="{% url 'post_detail' post.pk %}" class="btn btn-primary">Read Blog</a>
+                            <a href="{% url 'post_detail' post.pk %}" class="btn btn-primary pull-right">Read Blog</a>
                         </div>
                     </div>
                 </div>
