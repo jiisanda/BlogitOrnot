@@ -12,6 +12,7 @@ Notes...
     }
     </style>
 <br>
+<p>Hello <strong>{{ user.username }}</strong>!!!</p>
 <div class="container">
     <div class="row">
       <div class="col-3">
@@ -39,9 +40,10 @@ Notes...
                         {% endif %}
                     </figcaption>
                   </figure>
-                <small>
-                    
-                </small>
+                <label class="col-sm-2 col-form-label">User</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="username" placeholder="username" value="{{ user.username }}">
+                </div>
                 <label class="col-sm-2 col-form-label">Title</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="title" placeholder="Title" {% if note %} value="{{ note.title }}" {% endif %}>

@@ -88,8 +88,14 @@
         {% for comment in post.comments.all %}      <!--For each comment in there-->
             <strong>{{ comment.comment_name }} - {{ comment.comment_date }}</strong>
             <br>
-            {{ comment.comment_body }}
-            <br><br>
+            <div class="container overflow-hidden">
+                <div class="row gx-5">
+                  <div class="col">
+                   <div class="p-2 border bg-light">{{ comment.comment_body }}</div>
+                  </div>
+                </div>
+              </div>
+            <br>
             <hr>
             <br>
         {% endfor %}

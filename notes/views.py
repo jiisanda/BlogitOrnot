@@ -1,11 +1,16 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponseRedirect
 from .models import Notes
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+
+from notes.models import Notes
 
 # Create your views here.
+@login_required
 def editor(request):
     notesid = int(request.GET.get('notesid', 0))
-    notes = Notes.objects.all()
+    notes = Notes.objects.filter(user=request.user)
 
     if request.method == 'POST':
         notesid = int(request.POST.get('notesid', 0))

@@ -1,7 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Notes(models.Model):
+    user = models.ForeignKey(User,null = True, on_delete=models.CASCADE)
     title = models.CharField(max_length=30, null=False, blank=False)
     note_content = models.TextField(blank=True, null=True)
 
