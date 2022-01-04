@@ -99,3 +99,14 @@ class AddCommentView(CreateView):
 
 
     # success_url = reverse_lazy('post_detail')
+
+class UserPostView(ListView):
+    model = Post
+    template_name = 'BlogApp/user_posts.html'
+
+    def get_context_data(self, *args, **kwargs):
+        user_post = Post.objects.all()
+        context = super(UserPostView, self).get_context_data(*args, **kwargs)
+        context["user_post"] = user_post
+        # print(context)
+        return context

@@ -1,0 +1,19 @@
+{% extends 'BlogApp/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1>This is {{ user.username }} profile...</h1>
+{{ user.id }}
+<div>
+    {% for post in object_list %}
+        {% if post.writer.id == user.id %}
+        Username: {{ post.writer.id }}
+        Post: {{ post.title }}
+        <br>
+        {% endif %}
+        
+    
+    {% endfor %}
+    </div>
+
+{% endblock content %}

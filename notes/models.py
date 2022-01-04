@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Notes(models.Model):
     user = models.ForeignKey(User,null = True, on_delete=models.CASCADE)
-    title = models.CharField(max_length=30, null=False, blank=False)
+    title = models.CharField(max_length=30, blank=False)
     note_content = models.TextField(blank=True, null=True)
 
     create_at = models.DateTimeField(auto_now_add=True)
@@ -14,5 +14,5 @@ class Notes(models.Model):
         ordering = ('title',)
     
     def __str__(self):
-        return self.title
+        return '%s - %s' % (self.title, self.user)
     

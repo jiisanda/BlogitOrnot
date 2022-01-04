@@ -1,5 +1,7 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponseRedirect
+
+from notes.forms import NoteForm
 from .models import Notes
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
@@ -12,7 +14,8 @@ def editor(request):
     notesid = int(request.GET.get('notesid', 0))
     notes = Notes.objects.filter(user=request.user)
 
-    if request.method == 'POST':
+    form = NoteForm(request.POST)
+    if form.is_valid():
         notesid = int(request.POST.get('notesid', 0))
         title=request.POST.get('title')
         note_content=request.POST.get('note_content', '')
@@ -30,7 +33,8 @@ def editor(request):
             note=Notes.objects.create(title=title, note_content=note_content)
 
             # return redirect('/?notesid=%i' % note.id)
-            return HttpResponseRedirect(request.path_info)  
+            return HttpResponseRedirect(request.path_info) 
+
 
 
     if notesid > 0 :
