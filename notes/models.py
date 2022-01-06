@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Notes(models.Model):
     user = models.ForeignKey(User,null = True, on_delete=models.CASCADE)
-    title = models.CharField(max_length=30, blank=False)
+    title = models.CharField(max_length=30, blank=False, null=False, default="Title")
     note_content = models.TextField(blank=True, null=True)
 
     create_at = models.DateTimeField(auto_now_add=True)

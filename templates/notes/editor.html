@@ -36,17 +36,15 @@ Notes...
                 <figure class="text-end">
                     <figcaption class="blockquote-footer">
                         {% if note %}
-                            Created at: {{ note.create_at|date:"m/d Y" }} / Modified at: {{ note.modified_at|date:"n/d Y" }}
+                            Created at: {{ note.create_at|date:"m/d Y" }} || Modified at: {{ note.modified_at|date:"n/d Y" }}
                         {% endif %}
                     </figcaption>
                 </figure>
-            </div>
-            {{ form.media }}
-            {{ form.as_p }}
-            {% comment %} <div class="row mb-3">
-                <label for="id_user" class="col-sm-2 col-form-label">User</label>
+            </div> 
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">User</label>
                 <div class="col-sm-10">
-                    <input type="hidden" class="form-control" name="username" placeholder="username" value="{{ user.username }}">
+                    <input type="text" class="form-control" name="username" value='' id='user'>
                 </div>
                 <label class="col-sm-2 col-form-label">Title</label>
                 <div class="col-sm-10">
@@ -56,7 +54,7 @@ Notes...
                 <div class="col-sm-10">
                     <textarea class="form-control" rows="5" name="note_content" placeholder="Your Note">{% if note %} {{ note.note_content }} {% endif %}</textarea>
                 </div>
-            </div> {% endcomment %}
+            </div>
             <div class="field">
                 <div class="control">
                     <button class="btn btn-dark">Note it!</button>
@@ -70,6 +68,10 @@ Notes...
         </form>
     </div>
     </div>
+    <script>
+        var name="{{ user.username }}";
+        document.getElementById('user').value = name;
+    </script>
 </div>
 {% endblock content %}
 

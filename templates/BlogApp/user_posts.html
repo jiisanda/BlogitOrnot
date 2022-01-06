@@ -2,17 +2,25 @@
 {% load static %}
 {% block content %}
 
-<h1>This is {{ user.username }} profile...</h1>
-{{ user.id }}
+<h1>This is {{ user.username }}'s Post...</h1>
 <div>
+    
     {% for post in object_list %}
         {% if post.writer.id == user.id %}
-        Username: {{ post.writer.id }}
-        Post: {{ post.title }}
+        <div class="row">
+            <div class="card text-dark bg-light mb-3 col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.body|slice:":25"|safe }}</p>
+                        <a href="{% url 'post_detail' post.pk %}" class="btn btn-primary pull-right">Read Blog</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <br>
         {% endif %}
         
-    
     {% endfor %}
     </div>
 

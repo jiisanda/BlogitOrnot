@@ -14,8 +14,9 @@ def editor(request):
     notesid = int(request.GET.get('notesid', 0))
     notes = Notes.objects.filter(user=request.user)
 
-    form = NoteForm(request.POST)
-    if form.is_valid():
+    # form = NoteForm(request.POST)
+    # if form.is_valid():
+    if request.method == 'POST':
         notesid = int(request.POST.get('notesid', 0))
         title=request.POST.get('title')
         note_content=request.POST.get('note_content', '')
@@ -34,8 +35,6 @@ def editor(request):
 
             # return redirect('/?notesid=%i' % note.id)
             return HttpResponseRedirect(request.path_info) 
-
-
 
     if notesid > 0 :
         note = Notes.objects.get(pk=notesid)
