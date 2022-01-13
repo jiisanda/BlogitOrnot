@@ -159,6 +159,7 @@ body{
                 {% endif %}
             </div>
         </div>
+        {% if page_user.user.username == user.username %}
         <div class="row gutters-sm">
             <div class="col-sm-6 mb-3">
                 <div class="card h-100">
@@ -176,6 +177,7 @@ body{
                 </div>
             </div>
         </div>
+        {% endif %}
     </div>
 </div>
 {% endblock content %}
