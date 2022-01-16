@@ -36,6 +36,7 @@
         {% endif %}
         <form action="{% url 'like_post' post.pk %}" method="POST" id="profile">
             {% csrf_token %}
+            {% if user.is_authenticated %}
             <button type="submit" name="post_id" value={{ post.id }} class="btn btn-primary btn-sm position-relative pull-right">
                 Like
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -43,6 +44,7 @@
                   <span class="visually-hidden">Likes</span>
                 </span>
               </button>
+            {% endif %}
         </form>
     </small>
     <hr>
