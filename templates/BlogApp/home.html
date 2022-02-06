@@ -32,45 +32,53 @@
             <br>
         {% endfor %}    
     {% else %}
-        <p>Hello Welcome to Blog It Or Not, Where you can write Blogs as well as can write your Diary...
-        <br>
-        Feel Free to Register your self...
-        <br>
-        <a class="navbar-link" href="{% url 'register' %}">Register</a>
-        <br>
-        And If you already have account do Login
-        <br>
-        <a class="navbar-link" href="{% url 'user_login' %}">Do LogIn</a>
-        <br>
-        <p>Here are the Blogs posted on Blog It Or Not...
-            {% for post in object_list %}
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            {% if post.post_picture %}
-                                <img src="{{ post.post_picture.url }}" class="card-img-top" alt="{{ post.title|slice:":20" }}" width="150" height="180">
-                            {% else %}
-                                <img src="media/Blog-It-Or-Not.png" class="card-img-top" width="150" height="180">
-                            {% endif %}
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ post.title }}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">
-                                    By: {{ post.writer.username }} - <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a><br>
-                                    {% if user.id == post.writer.id %}
-                                        <a href="{% url 'post_edit' post.pk %}">[Edit]</a>
-                                        <a href="{% url 'post_delete' post.pk %}">[Delete]</a>
-                                    {% endif %}
-                                </h6>
-                                <p class="card-text">{{ post.body|slice:":25"|safe }}</p>
-                                <a href="{% url 'post_detail' post.pk %}" class="btn btn-primary pull-right">Read Blog</a>
+    <div class="container">
+        <div class="row">
+          <div class="col-3">
+            <p>Hello Welcome to <br><strong>Blog It Or Not</strong>...
+                <br><br>
+                Where you can write Blogs as well as can write your Diary...
+                <br>
+                <div class="container" style="text-align: center">
+                <br>
+                <a class="btn btn-primary" href="{% url 'register' %}" role="button">Register</a><br>
+                <p id="p-OR">OR<br>
+                <a class="btn btn-primary" href="{% url 'user_login' %}" role="button">LogIn</a>
+                <br>
+                </div>
+        </div>
+        <div class="col-9">
+            <p>Here are the Blogs posted on Blog It Or Not...
+                {% for post in object_list %}
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                {% if post.post_picture %}
+                                    <img src="{{ post.post_picture.url }}" class="card-img-top" alt="{{ post.title|slice:":20" }}" width="150" height="180">
+                                {% else %}
+                                    <img src="media/Blog-It-Or-Not.png" class="card-img-top" width="150" height="180">
+                                {% endif %}
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ post.title }}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">
+                                        By: {{ post.writer.username }} - <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a><br>
+                                        {% if user.id == post.writer.id %}
+                                            <a href="{% url 'post_edit' post.pk %}">[Edit]</a>
+                                            <a href="{% url 'post_delete' post.pk %}">[Delete]</a>
+                                        {% endif %}
+                                    </h6>
+                                    <p class="card-text">{{ post.body|slice:":25"|safe }}</p>
+                                    <a href="{% url 'post_detail' post.pk %}" class="btn btn-primary pull-right">Read Blog</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-        {% endfor %}    
-        </p>
+            {% endfor %}    
+            </p>
+        </div>
+        </div>
     {% endif %}
 {% endblock content %}
 

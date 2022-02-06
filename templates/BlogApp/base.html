@@ -96,69 +96,70 @@
         {% endblock content %}
       </div>
     <br> <br> <br> <br> <br> <br>
-    <!--Footer Section-->
-    <section class="section-title bg-light">
-        <div class="container">
-            <div class="row justify-content-enter align-item-center">
-                <div class="col-md-12 md-4">
-                    <h1 class="heading">Blog it or Not</h1>
-
-                    <small> SUBSCRIBE!!! </small> <!--Add Email Auth-->
-                </div>
-            </div>
-        </div>
-    </section>
-    <footer class="site-footer">
-        <div class="container">
-            <div class="row md-5">
-                <div class="col-md-3 md-5">
-                    <h3>About us</h3>
-                    <p>It's a Django Project!!! Made to practice my skills.</p>
-                    <p>Visit Code <a href="https://github.com/heyharshjaiswal/BlogitOrnot" target="_blank"><img src="https://img.icons8.com/external-bearicons-flat-bearicons/64/000000/external-click-here-call-to-action-bearicons-flat-bearicons.png" height="80%"></a> </p>
-                </div>
-                <div class="col-md-3 md-5">
-                    <h3>Contact</h3>
-                    <ul class="list-unstyled footer-link">
-                        <li class="d-flex">
-                            <span class="me-3">Email: </span><span>harshjaiswal2307<small>@gmail.com</small></sapn></br>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-3 md-6">
-                    <h3>Quick Clicks</h3>
-                    <ul class="list-unstyled footer-link">
-                        
-                        <li><a href="{% url 'home' %}">Home</a></li>
-                        {% if user.is_authenticated %}
-                        <li><a href="{% url 'post_new' %}">Write Something</a></li>
-                        
-                        <li><a href="{% url 'logout' %}">LogOut</a></li>
-                        {% else %}
-                        <li><a href="{% url 'user_login' %}">LogIn</a></li>
-                        {% endif %}
-
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h2>Get Connected</h2>
-                    <ul class="list-unstyled footer-link d-flex footer-social">
-                        <li><a href="https://www.youtube.com/channel/UC8b-gnPtLqpGn-fIRn7xdlg" target="_blank"><img src="https://img.icons8.com/doodle/48/000000/youtube-play--v2.png" height="90%"></a><li>
-                        <li><a href="https://www.linkedin.com/in/harsh-jaiswal-2307/" target="_blank"><img src="https://img.icons8.com/fluency/48/000000/linkedin.png" height="90%"></a></li>
-                        <li><a href="https://www.instagram.com/heyharshjaiswal/?hl=en" target="_blank"><img src="https://img.icons8.com/fluency/48/000000/instagram-new.png" height="90%"></a></li>
-                        <li><a href="https://www.buymeacoffee.com/harshjaiswal" target="_blank"><img src="https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/24/000000/external-buy-me-a-coffee-help-creators-receive-support-from-their-audience-logo-shadow-tal-revivo.png"/></a></li>
-                        <li><a href="https://github.com/heyharshjaiswal" target="_blank"><img src="https://img.icons8.com/ios-glyphs/30/000000/github.png"/></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 text-md-center text-left">
-                    <p>Hope you <img src="https://img.icons8.com/external-those-icons-lineal-color-those-icons/24/000000/external-like-feedback-those-icons-lineal-color-those-icons.png"/> the project...</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <footer class="section-copyright">
-        <small><p>&copy; 2022 Blog It Or Not, <small>Tm</small></p></small>
-    </footer>
+    
   </body>
+<!--Footer Section-->
+<section class="section-title bg-light">
+    <div class="container">
+        <div class="row justify-content-enter align-item-center">
+            <div class="col-md-12 md-4">
+                <h1 class="heading">Blog it or Not</h1>
+
+                <small> SUBSCRIBE!!! </small> <!--Add Email Auth-->
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="site-footer">
+    <div class="container">
+        <div class="row md-5">
+            <div class="col-md-3 md-5">
+                <h3>About us</h3>
+                <p>It's a Django Project!!! Made to practice my skills.</p>
+                <p>Visit Code <a href="https://github.com/heyharshjaiswal/BlogitOrnot" target="_blank"><img src="https://img.icons8.com/external-bearicons-flat-bearicons/64/000000/external-click-here-call-to-action-bearicons-flat-bearicons.png" height="80%"></a> </p>
+            </div>
+            <div class="col-md-3 md-5">
+                <h3>Contact</h3>
+                <ul class="list-unstyled footer-link">
+                    <li class="d-flex">
+                        <span class="me-3">Email: </span><span>harshjaiswal2307<small>@gmail.com</small></sapn></br>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3 md-6">
+                <h3>Quick Clicks</h3>
+                <ul class="list-unstyled footer-link">
+                    
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'post_new' %}">Write Something</a></li>
+                    
+                    <li><a href="{% url 'logout' %}">LogOut</a></li>
+                    {% else %}
+                    <li><a href="{% url 'user_login' %}">LogIn</a></li>
+                    {% endif %}
+
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h2>Get Connected</h2>
+                <ul class="list-unstyled footer-link d-flex footer-social">
+                    <li><a href="https://www.youtube.com/channel/UC8b-gnPtLqpGn-fIRn7xdlg" target="_blank"><img src="https://img.icons8.com/doodle/48/000000/youtube-play--v2.png" height="90%"></a><li>
+                    <li><a href="https://www.linkedin.com/in/harsh-jaiswal-2307/" target="_blank"><img src="https://img.icons8.com/fluency/48/000000/linkedin.png" height="90%"></a></li>
+                    <li><a href="https://www.instagram.com/heyharshjaiswal/?hl=en" target="_blank"><img src="https://img.icons8.com/fluency/48/000000/instagram-new.png" height="90%"></a></li>
+                    <li><a href="https://www.buymeacoffee.com/harshjaiswal" target="_blank"><img src="https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/24/000000/external-buy-me-a-coffee-help-creators-receive-support-from-their-audience-logo-shadow-tal-revivo.png"/></a></li>
+                    <li><a href="https://github.com/heyharshjaiswal" target="_blank"><img src="https://img.icons8.com/ios-glyphs/30/000000/github.png"/></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-md-center text-left">
+                <p>Hope you <img src="https://img.icons8.com/external-those-icons-lineal-color-those-icons/24/000000/external-like-feedback-those-icons-lineal-color-those-icons.png"/> the project...</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<footer class="section-copyright">
+    <small><p>&copy; 2022 Blog It Or Not, <small>Tm</small></p></small>
+</footer>
 </html>
