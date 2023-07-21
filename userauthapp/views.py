@@ -10,6 +10,7 @@ from django.views import generic
 from .forms import ProfileEditForm, UserProfileEditForm
 from django.views.generic import DetailView
 from .models import Profile
+from BlogApp.models import Post
 import django.contrib.auth.hashers as hasher
 
 # Create your views here
@@ -94,12 +95,14 @@ class ShowProfilePageView(DetailView):
     model = Profile
     template_name = 'userauthapp/user_profile.html'
 
-    def get_context_data(self,*args, **kwargs):
+    def get_context_data(self, *args, **kwargs):
         # users = Profile.objects.all()
         context = super(ShowProfilePageView, self).get_context_data(*args, **kwargs)
-        
+        blogs = Post.objects.all()
+
         page_user = get_object_or_404(Profile, id=self.kwargs['pk'])
         context["page_user"] = page_user
+        context["blogs"] = list(blogs)
         return context
 
 

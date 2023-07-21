@@ -8,7 +8,6 @@ a:link, a:visited,  a:hover, a:active
     text-decoration: none;
 }
 body{
-    {% comment %} margin-top:20px; {% endcomment %}
     color: #1a202c;
     text-align: left;
     background-color: #d5dee9;    
@@ -165,7 +164,20 @@ body{
                 <div class="card h-100">
                     <div class="card-body">
                         <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">your</i>Posts</h6>
+                        <hr>
+                        <ul>
+                        {% for blog in blogs|slice:":5" %}
+                            {% if blog.writer.id == page_user.user.id %}
+                            <li>
+                                {{ blog.title }}
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+                        <br>
+                        <br>
                         <h5>All Your posts <a href="{% url 'user_posts' user.id %}">here</a></h5> 
+                        </ul>
+
                     </div>
                 </div>
             </div>

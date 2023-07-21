@@ -9,32 +9,32 @@ from django.shortcuts import render
 from notes.models import Notes
 
 # Create your views here.
+class Editor():
+    ...
+
 @login_required
 def editor(request):
     notesid = int(request.GET.get('notesid', 0))
     notes = Notes.objects.filter(user=request.user)
 
-    # form = NoteForm(request.POST)
-    # if form.is_valid():
     if request.method == 'POST':
+        user=request.user
         notesid = int(request.POST.get('notesid', 0))
         title=request.POST.get('title')
         note_content=request.POST.get('note_content', '')
 
         if notesid > 0:
             note=Notes.objects.get(pk=notesid)
+            note.user = user.username
             note.title=title
             note.note_content=note_content
             note.save()
-
-            # return redirect('/?notesid=%i' % notesid)
-            return HttpResponseRedirect(request.path_info)
         
         else:
-            note=Notes.objects.create(title=title, note_content=note_content)
+            note=Notes.objects.create(user=user, title=title, note_content=note_content)
 
-            # return redirect('/?notesid=%i' % note.id)
-            return HttpResponseRedirect(request.path_info) 
+        # return redirect('/?notesid=%i' % note.id)
+        return HttpResponseRedirect(request.path_info) 
 
     if notesid > 0 :
         note = Notes.objects.get(pk=notesid)

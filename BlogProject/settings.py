@@ -1,4 +1,4 @@
-from .env import DEBUG, SECRET_KEY, ALLOWED_HOSTS
+from .env import DEBUG, SECRET_KEY
 """
 Django settings for BlogProject project.
 
@@ -26,7 +26,7 @@ SECRET_KEY = SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = DEBUG
 
-ALLOWED_HOSTS = [ALLOWED_HOSTS, '127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition

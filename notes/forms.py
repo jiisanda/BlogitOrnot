@@ -8,7 +8,8 @@ class NoteForm(forms.Form):
         fields = ('user', 'title', 'note_content')
 
         widgets = {
-            'user':forms.TextInput(attrs={'class':'form-control', 'value':'', 'id':'user', 'type':'hidden'}),
+            # 'user':forms.TextInput(attrs={'class':'form-control', 'value':'', 'id':'user', 'type':'hidden'}),
             'title':forms.TextInput(),
             'note_content':forms.Textarea(),
+            'user': forms.HiddenInput(),
         }

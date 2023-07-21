@@ -2,8 +2,8 @@ from django import forms
 from django.forms import widgets
 from BlogApp.models import Comment, Post, Category
 
-# choices = [('Coding', 'Coding'), ('Entertainment', 'Entertainment'), ('Education', 'Education')]
-choices = Category.objects.all().values_list('name', 'name')
+choices = [('Coding', 'Coding'), ('Entertainment', 'Entertainment'), ('Education', 'Education')]
+# choices = Category.objects.all().values_list('name', 'name')
 
 choices_list =[]
 for item in choices:
