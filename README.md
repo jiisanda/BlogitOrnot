@@ -1,7 +1,7 @@
 
 <br />
 <div align="center">
-  <a href="https://github.com/heyharshjaiswal/blogitornot">
+  <a href="https://github.com/jiisanda/blogitornot">
     <img src="screenshots/Blog-It-Or-Not.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -10,7 +10,7 @@
   <p align="center">
     A Blogging application, with private notes.
     <br />
-    <a href="https://github.com/heyharshjaiswal/shaberi"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/jiisanda/blogitornot"><strong>Explore the docs »</strong></a>
   </p>
 </div>
 
