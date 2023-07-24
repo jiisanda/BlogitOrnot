@@ -14,5 +14,5 @@ class Notes(models.Model):
         ordering = ('title',)
     
     def __str__(self):
-        return '%s - %s' % (self.title, self.user)
+        return f"{self.title} - {self.user}"
     

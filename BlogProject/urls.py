@@ -27,7 +27,7 @@ urlpatterns = [
     path('', include('BlogApp.urls')),
     path('', include('userauthapp.urls')),
     path('', include('notes.urls')),
-    path('logout/', views.user_logout, name='logout'),
+    path('logout/', views.UserLogoutView.as_view(), name='logout'),
 ]
 
 
