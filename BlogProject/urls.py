@@ -13,14 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+
 from BlogApp import views
 from userauthapp import views
-from django.conf.urls.static import static
-from django.conf import settings
 
-app_aname = "BlogApp"
+app_name = "BlogApp"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +30,5 @@ urlpatterns = [
     path('', include('notes.urls')),
     path('logout/', views.UserLogoutView.as_view(), name='logout'),
 ]
-
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
