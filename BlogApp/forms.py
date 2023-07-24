@@ -1,15 +1,16 @@
 from django import forms
 from django.forms import widgets
+
 from BlogApp.models import Comment, Post, Category
+
 
 choices = [('Coding', 'Coding'), ('Entertainment', 'Entertainment'), ('Education', 'Education')]
 for name in choices:
     Category.objects.create(name=name)
 choices = Category.objects.all().values_list('name', 'name')
 
-choices_list =[]
-for item in choices:
-    choices_list.append(item)
+choices_list = list(choices)
+
 
 class PostForm(forms.ModelForm):
     class Meta():

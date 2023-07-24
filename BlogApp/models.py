@@ -1,10 +1,11 @@
 from typing import Text
+
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.fields import CharField, TextField
+from ckeditor.fields import RichTextField
 from django.urls import reverse
 from django.utils import timezone
-from django.contrib.auth.models import User
-from ckeditor.fields import RichTextField
 
 
 # Create your models here.
@@ -13,9 +14,10 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-    
+
     def get_absolute_url(self):
         return reverse("post_detail", args=[str(self.id)])
+
 
 class Post(models.Model):
     title=models.CharField(max_length=200)
@@ -32,8 +34,8 @@ class Post(models.Model):
     likes = models.ManyToManyField(User, related_name='blog_posts')
 
     def __str__(self):
-        return self.title + ' | ' + str(self.writer)
-    
+        return f"{self.title} | {str(self.writer)}"
+
     def get_absolute_url(self):
         return reverse("post_detail", args=[str(self.id)])
 
@@ -48,5 +50,5 @@ class Comment(models.Model):
     comment_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return '%s - %s' % (self.post.title, self.comment_name)
+        return f"{self.post.title} - {self.comment_name}"
 

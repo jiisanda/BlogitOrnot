@@ -1,16 +1,15 @@
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy
 from django.urls.base import reverse
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
-from BlogApp.forms import PostForm, UpdateForm, AddCommentForm
 
+from BlogApp.forms import PostForm, UpdateForm, AddCommentForm
 from .models import Comment, Post, Category
 
 
 # Create your views here.
-
 class BlogListView(ListView):
     model = Post
     template_name='BlogApp\home.html'
